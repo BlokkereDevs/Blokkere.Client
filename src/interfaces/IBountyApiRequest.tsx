@@ -1,4 +1,4 @@
-interface IBounty
+interface IBountyRequest
 {
     id?: number,
     title: string,
@@ -13,4 +13,4 @@ interface IBounty
     assignedUsers?: number[] | null
 }
 
-export default IBounty;
+export default IBountyRequest;

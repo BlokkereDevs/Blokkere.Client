@@ -55,6 +55,8 @@ export const BountyAPI = {
             method: 'POST',
             data: bounty
         });
+        console.log("Post Bounty :");
+        console.log(response);
         return response.data;
     }
 };
