@@ -2,7 +2,8 @@ import axios from "axios";
 
 export const api = axios.create({
     //withCredentials: true,
-    baseURL: 'https://localhost:7018',
+    //baseURL: 'https://localhost:7018',
+    baseURL: "https://blokkere.azurewebsites.net",
     headers: {
         Accept: 'text/plain',
         "Content-Type": 'application/json',

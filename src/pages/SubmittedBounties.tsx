@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
-import IBounty from '../interfaces/IBounty';
+import { Col, Container, Row } from 'react-bootstrap'
 import { UserAPI } from '../apis/UserAPI';
+import IBounty from '../interfaces/IBounty';
 import BountyCard from '../components/BountyCard';
-import { Col, Container, Row } from 'react-bootstrap';
 import PreviewBounty from '../components/PreviewBounty';
-import { useNavigate } from "react-router-dom"
 
-function Bounties()
+function SubmittedBounties()
 {
     const [bounties, setBounties] = useState<IBounty[]>([]);
     const [openPreview, setOpenPreview] = useState<boolean>(false);
     const [currentBounty, setCurrentBounty] = useState<IBounty>();
-    const navigate = useNavigate();
 
     useEffect(() =>
     {
@@ -28,7 +26,7 @@ function Bounties()
             console.log("User API Response : ");
             console.log(response);
         })
-    };
+    }
 
     const previewBounty = (flag: boolean) =>
     {
@@ -37,7 +35,7 @@ function Bounties()
 
     return (
         <>
-            <Navbar navbarHeader='Bounties' />
+            <Navbar navbarHeader='Submitted Bounties' />
             <Container>
                 <Row md={4}>
                     {
@@ -75,11 +73,11 @@ function Bounties()
                     status={currentBounty!.status}
                     previewBounty={previewBounty}
                 >
-                    <button onClick={() => navigate("/dummypayment")}>Pay</button>
+                    <button>Pay</button>
                 </PreviewBounty>
             }
         </>
     )
 }
 
-export default Bounties
+export default SubmittedBounties

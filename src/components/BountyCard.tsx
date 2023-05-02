@@ -1,6 +1,22 @@
 import { useState } from "react"
 import IBounty from "../interfaces/IBounty";
 
+interface BountyCardProps
+{
+    id?: number,
+    title: string,
+    description: string,
+    reward: number,
+    evaluation: string,
+    resources: string,
+    deadline: Date,
+    authorId: number,
+    category: string,
+    status: string,
+    assignedUsers?: number[] | null,
+    onClick: () => void,
+}
+
 function BountyCard({ id,
     title,
     description,
@@ -11,12 +27,13 @@ function BountyCard({ id,
     authorId,
     category,
     status,
-    assignedUsers
-}: IBounty)
+    assignedUsers,
+    onClick,
+}: BountyCardProps)
 {
     return (
         <>
-            <div className="card" style={{ width: '18rem' }}>
+            <div className="card" style={{ width: '18rem' }} onClick={() => onClick()}>
                 <div className="card-header">
                     {status}
                 </div>

@@ -1,5 +1,5 @@
 import RootLayout from "./layouts/RootLayout";
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Routes } from 'react-router-dom';
 import Home from "./pages/Home";
 import CreateBounties from "./pages/CreateBounties";
 import Bounties from "./pages/Bounties";
@@ -9,22 +9,14 @@ import Login from "./pages/Login";
 import NoPage from "./pages/NoPage";
 import Dummy from "./pages/Dummy";
 import BountyCard from "./components/BountyCard";
+import DummyPayment from "./pages/DummyPayment";
+
 
 // const appRouter = createBrowserRouter(
 //   createRoutesFromElements(
-
-//     <Route>
-//       <Route path='/' element={<RootLayout />}>
-//         <Route path='/home' index element={<Home />} />
-//         <Route path='/createbounties' element={<CreateBounties />} />
-//         <Route path='/bounties' element={<Bounties />} />
-//         <Route path='/statistics' element={<Statistics />} />
-//         <Route path='/yourprofile' element={<YourProfile />} />
-//       </Route>
-//       <Route path='/login' element={<Login />} />
-//       <Route path="*" element={<NoPage />} />
-//       <Route path='/dummy' element={<Dummy />} />
-//     </Route>
+//     <Routes>
+//       <Route path="dummypayment" element={<DummyPayment />} />
+//     </Routes>
 //   )
 // );
 
@@ -36,6 +28,7 @@ function App()
       <RootLayout></RootLayout>
       <Header></Header> */}
       {/* <BountyCard></BountyCard> */}
+      {/* <RouterProvider router={appRouter} /> */}
       <RootLayout></RootLayout>
       {/* <Header></Header> */}
     </div>)

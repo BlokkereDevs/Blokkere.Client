@@ -1,5 +1,6 @@
 import { api } from "./configs/axiosConfig"
 import bounty from "../interfaces/IBounty";
+import IBountyApiRequest from "../interfaces/IBountyApiRequest";
 //import { defineCancelApiObject } from "./configs/axiosUtils";
 
 const bountyApiHeader = {
@@ -47,7 +48,7 @@ export const BountyAPI = {
         });
         return response.data;
     },
-    postBounty: async function (bounty: bounty, cancel = false)
+    postBounty: async function (bounty: IBountyApiRequest, cancel = false)
     {
         const response = await api.request({
             url: `/api/Bounty`,

@@ -10,17 +10,22 @@ export const SidebarData = [
     {
         title: 'Create Bounties',
         path: '/createbounties',
-        icon: <FaIcons.FaUsers />
+        icon: <FaIcons.FaPlusCircle />
     },
     {
         title: 'Bounties',
         path: '/bounties',
-        icon: <FaIcons.FaTasks />
+        icon: <FaIcons.FaBriefcase />
+    },
+    {
+        title: 'SubmittedBounties',
+        path: '/submittedbounties',
+        icon: <FaIcons.FaMoneyCheck />
     },
     {
         title: 'Statistics',
         path: '/statistics',
-        icon: <FaIcons.FaRocketchat />
+        icon: <FaIcons.FaChartBar />
     }
 ]
 

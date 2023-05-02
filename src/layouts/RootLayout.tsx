@@ -9,8 +9,8 @@ import Statistics from '../pages/Statistics';
 import YourProfile from '../pages/YourProfile';
 import BountyCard from '../components/BountyCard';
 import IBounty from '../interfaces/IBounty';
-import PreviewBounty from '../pages/PreviewBounty';
-// import PreviewBounty from '../components/PreviewBounty';
+import SubmittedBounties from '../pages/SubmittedBounties';
+import DummyPayment from '../pages/DummyPayment';
 
 
 function RootLayout()
@@ -18,15 +18,21 @@ function RootLayout()
     return (
         <>
             <Router>
-                <Sidebar />
+                <>
+                    <Sidebar />
+                    <Routes>
+                        <Route path='/home' index element={<Home />} />
+                        <Route path='/createbounties' element={<CreateBounties />} />
+                        <Route path='/bounties' element={<Bounties />} />
+                        <Route path='/statistics' element={<Statistics />} />
+                        <Route path='/yourprofile' element={<YourProfile />} />
+                        <Route path='/submittedbounties' element={<SubmittedBounties />} />
+                    </Routes>
+                </>
                 <Routes>
-                    <Route path='/home' index element={<Home />} />
-                    <Route path='/createbounties' element={<CreateBounties />} />
-                    <Route path='/bounties' element={<Bounties />} />
-                    <Route path='/statistics' element={<Statistics />} />
-                    <Route path='/yourprofile' element={<YourProfile />} />
-                    <Route path='/previewbounty' element={<PreviewBounty />} />
+                    <Route path='/dummypayment' element={<DummyPayment />} />
                 </Routes>
+
             </Router>
         </>
     )

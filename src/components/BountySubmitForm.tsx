@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { BountyAPI } from '../apis/BountyAPI';
 import IUser from '../interfaces/IUser';
 import { UserAPI } from '../apis/UserAPI';
-import PreviewBounty from '../pages/PreviewBounty';
+import PreviewBounty from './PreviewBounty';
 import { Route } from 'react-router-dom'
+import BlokerreButton from './BlokerreButton';
 
 
 interface BountySubmitFormProps
@@ -97,10 +98,11 @@ function BountySubmitForm()
     const [isEvaluationCriteriaValid, setIsEvaluationCriteriaValid] = useState(true);
     const [isUsefulLink1Valid, setIsUsefulLink1Valid] = useState(true);
     const [isUsefulLink2Valid, setIsUsefulLink2Valid] = useState(true);
+    const [openPreview, setOpenPreview] = useState<boolean>(false);
 
     useEffect(() =>
     {
-        getUser(10);
+        getUser(76);
     }, []);
 
     const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -281,7 +283,7 @@ function BountySubmitForm()
                 reward: reward,
                 evaluation: evaluationCriteria,
                 resources: usefulLink1,
-                deadline: dueDate,
+                deadline: dueDate.toUTCString(),
                 authorId: 76,
                 category: bountyCategory,
                 status: bountyStatus,
@@ -299,13 +301,9 @@ function BountySubmitForm()
         createBounty();
     }
 
-    const previewBounty = () =>
+    const previewBounty = (flag: boolean) =>
     {
-        return (
-            <div>
-                <PreviewBounty />
-            </div>
-        );
+        setOpenPreview(flag);
     }
 
     return (
@@ -335,6 +333,12 @@ function BountySubmitForm()
                     placeholder='Bounty Details'
                     onChange={e => handleUserInput(e)} />
                 {!isBountyTitleValid && <StyledAlert>{formErrors.bountyDetails}</StyledAlert>}
+                <StyledLabel>Reward</StyledLabel>
+                <StyledInput type='text'
+                    name='reward'
+                    placeholder='Reward'
+                    onChange={e => handleUserInput(e)} />
+                {!isBountyTitleValid && <StyledAlert>{formErrors.rewardDetails}</StyledAlert>}
                 <StyledLabel>Reward Details</StyledLabel>
                 <StyledInput type='text'
                     name='rewardDetails'
@@ -366,8 +370,27 @@ function BountySubmitForm()
                     onChange={e => handleUserInput(e)} />
                 {!isBountyTitleValid && <StyledAlert>{formErrors.usefulLink2}</StyledAlert>}
                 <StyledButton type='submit' disabled={!formValid} onClick={handleSubmit}>Submit</StyledButton>
-                <StyledButton disabled={formValid} onClick={previewBounty}>Preview</StyledButton>
+                <StyledButton type='button' disabled={!formValid} onClick={() => previewBounty(true)}>Preview</StyledButton>
+                {openPreview &&
+                    <PreviewBounty previewBounty={previewBounty}
+                        title={bountyTitle}
+                        description={bountyDetails}
+                        reward={reward}
+                        evaluation={evaluationCriteria}
+                        resources={usefulLink1}
+                        deadline={dueDate}
+                        category={bountyCategory}
+                        status={bountyStatus}>
+                        <>
+                            <BlokerreButton onClick={handleSubmit}>Submit</BlokerreButton>
+                            <BlokerreButton color='secondary' onClick={() => previewBounty(false)}>Cancel</BlokerreButton>
+                            <BlokerreButton color='info' onClick={() => { }}>Add to List</BlokerreButton>
+                        </>
+                    </ PreviewBounty>}
             </StyledForm>
+            <div>
+
+            </div>
 
             <div>
                 {formErrors.bountyTitle}
