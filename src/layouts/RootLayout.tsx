@@ -22,6 +22,7 @@ function RootLayout()
                 <>
                     <AnimatePresence>
                         <Routes>
+                            <Route path='/' index element={<Home />} />
                             <Route path='/home' index element={<Home />} />
                             <Route path='/createbounties' element={<CreateBounties />} />
                             <Route path='/bounties' element={<Bounties />} />
