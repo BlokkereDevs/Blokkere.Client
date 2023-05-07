@@ -10,27 +10,16 @@ import NoPage from "./pages/NoPage";
 import Dummy from "./pages/Dummy";
 import BountyCard from "./components/BountyCard";
 import DummyPayment from "./pages/DummyPayment";
+const pages = import.meta.glob("./pages/**/*.tsx", { eager: true });
 
 
-// const appRouter = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Routes>
-//       <Route path="dummypayment" element={<DummyPayment />} />
-//     </Routes>
-//   )
-// );
+
 
 function App()
 {
   return (
     <div>
-      {/* <RouterProvider router={appRouter} />
       <RootLayout></RootLayout>
-      <Header></Header> */}
-      {/* <BountyCard></BountyCard> */}
-      {/* <RouterProvider router={appRouter} /> */}
-      <RootLayout></RootLayout>
-      {/* <Header></Header> */}
     </div>)
 }
 

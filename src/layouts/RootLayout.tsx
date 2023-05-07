@@ -12,13 +12,14 @@ import IBounty from '../interfaces/IBounty';
 import SubmittedBounties from '../pages/SubmittedBounties';
 import DummyPayment from '../pages/DummyPayment';
 import { AnimatePresence } from 'framer-motion';
-
+// import { HashRouter as Router,Route } from 'react-router-dom';
+import { HashRouter as Router1 } from 'react-router-dom';
 
 function RootLayout()
 {
     return (
         <>
-            <Router>
+            <Router1>
                 <>
                     <AnimatePresence>
                         <Routes>
@@ -36,7 +37,7 @@ function RootLayout()
                     <Route path='/dummypayment' element={<DummyPayment />} />
                 </Routes>
 
-            </Router>
+            </Router1>
         </>
     )
 }
