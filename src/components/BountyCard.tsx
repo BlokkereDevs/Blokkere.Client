@@ -1,5 +1,6 @@
 import { useState } from "react"
 import IBounty from "../interfaces/IBounty";
+import "./BountyCard.css"
 
 interface BountyCardProps
 {
@@ -31,23 +32,28 @@ function BountyCard({ id,
     onClick,
 }: BountyCardProps)
 {
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     return (
         <>
-            <div className="card" style={{ width: '18rem' }} onClick={() => onClick()}>
-                <div className="card-header">
+            <div className="card bountyCard" onClick={() => onClick()}>
+                {status === "Open" && <div className="card-header" style={{ backgroundColor: "#12cd26" }}>
                     {status}
-                </div>
+                </div>}
+
+                {status === "CLOSED" && <div className="card-header" style={{ backgroundColor: "red" }}>
+                    {status}
+                </div>}
+
                 <div className="card-body">
-                    <h5 className="card-title">{title}</h5>
-                    <h6 className="card-subtitle mb-2 text-body-secondary">{category}</h6>
+                    <h5 className="card-title cardTitle">{title}</h5>
+                    <h6 className="card-subtitle mb-2 text-body-secondary cardCat">{category}</h6>
 
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">{deadline.toString()}</li>
-
+                        <li className="list-group-item">{deadline.toLocaleString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</li>
                     </ul>
                 </div>
-                <div className="card-footer text-body-secondary">
-                    {reward}
+                <div className="card-footer text-body-secondary cardReward">
+                    ₹{reward}
                 </div>
             </div>
         </>

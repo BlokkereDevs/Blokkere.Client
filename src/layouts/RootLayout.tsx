@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import TopBar from '../components/TopBar';
 import Sidebar from '../components/Sidebar';
 import Home from '../pages/Home';
@@ -11,6 +11,7 @@ import BountyCard from '../components/BountyCard';
 import IBounty from '../interfaces/IBounty';
 import SubmittedBounties from '../pages/SubmittedBounties';
 import DummyPayment from '../pages/DummyPayment';
+import { AnimatePresence } from 'framer-motion';
 
 
 function RootLayout()
@@ -19,7 +20,6 @@ function RootLayout()
         <>
             <Router>
                 <>
-                    <Sidebar />
                     <Routes>
                         <Route path='/home' index element={<Home />} />
                         <Route path='/createbounties' element={<CreateBounties />} />

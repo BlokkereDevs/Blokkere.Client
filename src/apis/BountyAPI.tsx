@@ -1,6 +1,7 @@
 import { api } from "./configs/axiosConfig"
 import bounty from "../interfaces/IBounty";
 import IBountyApiRequest from "../interfaces/IBountyApiRequest";
+import IBountyAssignApiRequest from "../interfaces/IBountyAssignApiRequest";
 //import { defineCancelApiObject } from "./configs/axiosUtils";
 
 const bountyApiHeader = {
@@ -54,6 +55,17 @@ export const BountyAPI = {
             url: `/api/Bounty`,
             method: 'POST',
             data: bounty
+        });
+        console.log("Post Bounty :");
+        console.log(response);
+        return response.data;
+    },
+
+    postAssignBountyById: async function (assignBountyRequest: IBountyAssignApiRequest)
+    {
+        const response = await api.request({
+            url: `/api/User/${assignBountyRequest.userId}/assign?bountyId=${assignBountyRequest.bountyId}`,
+            method: 'POST'
         });
         console.log("Post Bounty :");
         console.log(response);

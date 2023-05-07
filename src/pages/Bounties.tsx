@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar'
 import IBounty from '../interfaces/IBounty';
 import { UserAPI } from '../apis/UserAPI';
 import BountyCard from '../components/BountyCard';
 import { Col, Container, Row } from 'react-bootstrap';
 import PreviewBounty from '../components/PreviewBounty';
 import { useNavigate } from "react-router-dom"
+import BlokerreButton from '../components/BlokerreButton';
+import Sidebar from '../components/Sidebar';
+import * as FaIcons from 'react-icons/fa'
+import "./bounties.css";
 
 function Bounties()
 {
@@ -37,12 +40,14 @@ function Bounties()
 
     return (
         <>
-            <Navbar navbarHeader='Bounties' />
+            <Sidebar navbarHeader='Bounties' >
+                <FaIcons.FaBriefcase size={25} />
+            </Sidebar>
             <Container>
                 <Row md={4}>
                     {
                         bounties.map(bounty => (
-                            <Col>
+                            <Col className="col2">
                                 <BountyCard title={bounty.title}
                                     description={bounty.description}
                                     reward={bounty.reward}
@@ -75,7 +80,7 @@ function Bounties()
                     status={currentBounty!.status}
                     previewBounty={previewBounty}
                 >
-                    <button onClick={() => navigate("/dummypayment")}>Pay</button>
+                    <BlokerreButton color='info' onClick={() => { }}>Add to List</BlokerreButton>
                 </PreviewBounty>
             }
         </>

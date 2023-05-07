@@ -6,21 +6,25 @@ import * as FaIcons from 'react-icons/fa'
 
 import { SidebarData } from './SidebarData';
 
-const Navbar = styled.div`
+
+const NavbarStyled = styled.div`
     display: flex;
     justify-content: start;
     align-items: center;
     height: 3.5rem;
-    background-color: #f3da6a;
+    background-color: #ffe700;
+    color: #000;
+    margin-bottom: 2%;
+    z-index: 1;
 `
 
-const NavbarHeader = styled.div`
+const NavbarHeaderStyled = styled.div`
     display: flex;
-    justify-content: end;
+    float:left;
+    padding: 3rem;
+    margin: 1rem;
+    text-align: center;
     align-items: center;
-    margin-left: 20rem
-    font-size: 2.0rem;
-    color: #ffffff;
 `
 
 const MenuIconOpen = styled(Link)`
@@ -28,7 +32,7 @@ const MenuIconOpen = styled(Link)`
     justify-content: start;
     font-size: 1.5rem;
     margin-left: 2rem;
-    color: #f3da6a;
+    color: #0a58ca;
 `
 
 const MenuIconClose = styled(Link)`
@@ -37,17 +41,18 @@ const MenuIconClose = styled(Link)`
     font-size: 1.5rem;
     margin-top: 0.75rem;
     margin-right: 1rem;
-    color: #f3da6a;
+    color: #0a58ca;
 `
 
 const SidebarMenu = styled.div<{ close: boolean }>`
     width: 250px;
     height: 100vh;
-    background-color: #f3da6a;
+    background-color: #ff4f4f;
     position: fixed;
     top: 0;
     left: ${({ close }) => close ? '0' : '-100%'};
     transition: .6s;
+    z-index:1;
 `
 
 const MenuItems = styled.li`
@@ -56,8 +61,8 @@ const MenuItems = styled.li`
     align-items: center;
     justify-content: start;
     width: 100%;
-    height: 90px;
-    padding: 1rem 0 1.25rem;
+    height: 15%;
+    padding: 0.5rem 0 1.25rem;
 `
 
 const MenuItemLinks = styled(Link)`
@@ -72,22 +77,42 @@ const MenuItemLinks = styled(Link)`
         background-color: #ffffff;
         color: #000080;
         width: 100%;
-        height: 45px;
+        height: 100%;
         text-align: center;
         border-radius: 5px;
-        margin: 0 2rem;
     }
 `
 
-const Sidebar: React.FunctionComponent = () =>
+interface SidebarProps
+{
+    navbarHeader: string
+    children: JSX.Element
+}
+
+function Sidebar({ navbarHeader, children }: SidebarProps) 
 {
     const [close, setClose] = useState(false)
     const showSidebar = () => setClose(!close)
+    const NavbarHeaderIcon = () => { return children; }
     return (
         <>
-            <MenuIconOpen to="#" onClick={showSidebar}>
-                <FaIcons.FaBars />
-            </MenuIconOpen>
+            <NavbarStyled>
+                <MenuIconOpen to="#" onClick={showSidebar}>
+                    <FaIcons.FaBars />
+                </MenuIconOpen>
+                <NavbarHeaderStyled>
+                    <NavbarHeaderIcon />
+                    <h4 style={{
+                        padding: '5px',
+                        paddingTop: '10px',
+                        paddingLeft: '10px',
+                        fontSize: '1.5rem',
+                        fontWeight: 'bolder',
+                        color: '#115658'
+                    }}> {navbarHeader}
+                    </h4>
+                </NavbarHeaderStyled>
+            </NavbarStyled>
 
 
             <SidebarMenu close={close}>

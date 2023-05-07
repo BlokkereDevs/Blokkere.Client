@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../components/Navbar'
 import { Col, Container, Row } from 'react-bootstrap'
 import { UserAPI } from '../apis/UserAPI';
 import IBounty from '../interfaces/IBounty';
 import BountyCard from '../components/BountyCard';
 import PreviewBounty from '../components/PreviewBounty';
+import Sidebar from '../components/Sidebar';
+import * as FaIcons from 'react-icons/fa'
 
 function SubmittedBounties()
 {
@@ -35,7 +36,9 @@ function SubmittedBounties()
 
     return (
         <>
-            <Navbar navbarHeader='Submitted Bounties' />
+            <Sidebar navbarHeader='Submitted Bounties' >
+                <FaIcons.FaMoneyCheck size={25} />
+            </Sidebar>
             <Container>
                 <Row md={4}>
                     {

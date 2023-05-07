@@ -1,0 +1,11 @@
+.labelContainer{
+    border-style: solid;
+    padding: 10px;
+    margin: 10px;
+    word-wrap: break-word;
+    background-color: ivory;
+}
+.text {
+    padding: 15px;
+    padding-top: 2px;
+}

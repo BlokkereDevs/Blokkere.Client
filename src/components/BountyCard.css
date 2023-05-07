@@ -1,0 +1,26 @@
+.bountyCard {
+    width: 17rem;
+    border: solid !important;
+    border-color: black !important;
+    /*text-align: center;*/
+}
+.cardTitle {
+    font-family: monospace;
+}
+.cardCat {
+    border-style: solid;
+    border-width: thin;
+    width: 40%;
+    border-radius: 29px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+    background-color: gold;
+    /*justify-content: center;*/
+}
+.cardReward {
+    font-size: 1.5rem;
+    font-family: monospace;
+    font-weight: bold;
+    /* text-align: center; */
+}

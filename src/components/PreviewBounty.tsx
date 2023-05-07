@@ -2,6 +2,8 @@ import { ReactNode, useState } from "react"
 import IBounty from "../interfaces/IBounty";
 import { Container } from "react-bootstrap";
 import styled from "styled-components";
+import './PreviewBounty.css';
+import * as FaIcons from 'react-icons/fa';
 
 
 const StyledPreviewBountyContainer = styled.div`
@@ -16,14 +18,16 @@ overflow: auto; /* Enable scroll if needed */
 background-color: rgb(0,0,0); /* Fallback color */
 background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 
+
 `
 
 const StyledPreviewBountyContent = styled.div`
 background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 50px;
   width: 80%; /* Could be more or less, depending on screen size */
+  border-style: solid;
+  border-color: black;
 `
 
 const PreviewLabel = styled.div`
@@ -32,6 +36,11 @@ const PreviewLabel = styled.div`
     align-items: center;
     height: 3.5rem;
     background-color: #f3da6a;
+    padding: 20px;
+    margin-bottom: 15px;
+    font-variant-caps: all-petite-caps;
+    font-size: 3.5rem;
+    color: #115658
 `
 
 interface PreviewBountyProps 
@@ -87,34 +96,56 @@ function PreviewBounty({ title,
                         )}
                         {isPreviewBountyPropsValid() && (
                             <>
-                                <button onClick={() => { previewBounty(false) }}>Close</button>
-                                <h1>Preview Bounty</h1>
-                                <h1>{title}</h1>
+                                <button onClick={() => { previewBounty(false) }}
+                                    style={{ borderStyle: "none" }}>
+                                    <FaIcons.FaTimes size={30} />
+                                </button>
+                                <br />
+                                <h1 style={{ marginTop: "10px" }}>{title}</h1>
                                 <h6>Deadline : {deadline.toString()}</h6>
-                                <PreviewLabel>
-                                    <h5>About Bounty </h5>
-                                </PreviewLabel>
-                                <h5>{description}</h5>
-                                <PreviewLabel>
-                                    <h5>Rewards </h5>
-                                </PreviewLabel>
-                                <h5>{reward}</h5>
-                                <PreviewLabel>
-                                    <h5>Evaluation Criteria </h5>
-                                </PreviewLabel>
-                                <h5>{evaluation}</h5>
-                                <PreviewLabel>
-                                    <h5>Resources </h5>
-                                </PreviewLabel>
-                                <h5>{resources}</h5>
-                                <PreviewLabel>
-                                    <h5>Category </h5>
-                                </PreviewLabel>
-                                <h5>{category}</h5>
-                                <PreviewLabel>
-                                    <h5>Status</h5>
-                                </PreviewLabel>
-                                <h5>{status}</h5>
+                                <br />
+                                <div className="labelContainer">
+                                    <PreviewLabel>
+                                        <h5>Details</h5>
+                                    </PreviewLabel>
+                                    <h6 className="text">{description}</h6>
+                                </div>
+
+                                <div className="labelContainer">
+                                    <PreviewLabel>
+                                        <h5>Rewards </h5>
+                                    </PreviewLabel>
+                                    <h5 className="text">₹ {reward}</h5>
+                                </div>
+
+                                <div className="labelContainer">
+                                    <PreviewLabel>
+                                        <h5>Evaluation Criteria </h5>
+                                    </PreviewLabel>
+                                    <h6 className="text">{evaluation}</h6>
+                                </div>
+
+                                <div className="labelContainer">
+                                    <PreviewLabel>
+                                        <h5>Resources </h5>
+                                    </PreviewLabel>
+                                    <h6 className="text">{resources}</h6>
+                                </div>
+
+                                <div className="labelContainer">
+                                    <PreviewLabel>
+                                        <h5>Category </h5>
+                                    </PreviewLabel>
+                                    <h6 className="text">{category}</h6>
+                                </div>
+
+                                <div className="labelContainer">
+                                    <PreviewLabel>
+                                        <h5>Status</h5>
+                                    </PreviewLabel>
+                                    <h6 className="text">{status}</h6>
+                                </div>
+                                <br />
                                 <PreviewExtension />
                             </>
                         )}

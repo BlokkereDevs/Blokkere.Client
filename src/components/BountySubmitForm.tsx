@@ -32,30 +32,42 @@ const StyledForm = styled.form`
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 5px;
+  width:40%;
+  margin:auto;
+  border-style: solid;
 `
 
 const StyledLabel = styled.label<BountySubmitFormProps>`
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 4px;
+  margin-top: 10px;
+  font-variant: all-small-caps;
+  font-size: 1.2rem;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   color: ${props => props.invalid ? 'red' : 'black'};
 `
 
 const StyledInput = styled.input`
-  width: 100%;
+  width: 90%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: smaller;
+  display: block;
+  margin: auto;
 `
 
 const StyledButton = styled.button<BountySubmitFormProps>`
   background-color: #4caf50;
   color: white;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 5%;
   &:disabled {
     opacity: 0.5;
   }
@@ -297,9 +309,50 @@ function BountySubmitForm()
                 });
         }
     }
+
     const handleSubmit = () =>
     {
         createBounty();
+        if (openPreview)
+        {
+            setOpenPreview(false);
+        }
+    }
+
+    const handleAddToList = () =>
+    {
+        if (formValid)
+        {
+            BountyAPI.postBounty({
+                title: bountyTitle,
+                description: bountyDetails,
+                reward: reward,
+                evaluation: evaluationCriteria,
+                resources: usefulLink1,
+                //deadline: dueDate.toUTCString(),
+                deadline: "2023-05-02T19:55:15.028Z",
+                authorId: 76,
+                category: bountyCategory,
+                status: bountyStatus,
+                assignedUsers: null
+            })
+                .then((response) =>
+                {
+                    console.log("Post Bounty Response:");
+                    console.log(response);
+                    BountyAPI.postAssignBountyById({ userId: response.authorId, bountyId: response.id })
+                        .then((response) =>
+                        {
+                            console.log("Post Bounty Assign Response:");
+                            console.log(response);
+
+                        })
+                })
+        }
+        if (openPreview)
+        {
+            setOpenPreview(false);
+        }
     }
 
     const previewBounty = (flag: boolean) =>
@@ -385,7 +438,7 @@ function BountySubmitForm()
                         <>
                             <BlokerreButton onClick={handleSubmit}>Submit</BlokerreButton>
                             <BlokerreButton color='secondary' onClick={() => previewBounty(false)}>Cancel</BlokerreButton>
-                            <BlokerreButton color='info' onClick={() => { }}>Add to List</BlokerreButton>
+                            <BlokerreButton color='info' onClick={handleAddToList}>Add to List</BlokerreButton>
                         </>
                     </ PreviewBounty>}
             </StyledForm>
