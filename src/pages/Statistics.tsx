@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar'
 import * as FaIcons from 'react-icons/fa'
+import { motion } from 'framer-motion';
 
 function Statistics()
 {

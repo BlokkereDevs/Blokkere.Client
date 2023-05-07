@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import styled from "styled-components";
 import './PreviewBounty.css';
 import * as FaIcons from 'react-icons/fa';
+import { motion } from "framer-motion";
 
 
 const StyledPreviewBountyContainer = styled.div`
@@ -23,7 +24,7 @@ background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 
 const StyledPreviewBountyContent = styled.div`
 background-color: #fefefe;
-  margin: 5% auto; /* 15% from the top and centered */
+  margin: 2% auto; /* 15% from the top and centered */
   padding: 50px;
   width: 80%; /* Could be more or less, depending on screen size */
   border-style: solid;
@@ -84,74 +85,83 @@ function PreviewBounty({ title,
 
     return (
         <>
-            <StyledPreviewBountyContainer>
-                <Container>
-                    <StyledPreviewBountyContent>
-                        {!isPreviewBountyPropsValid() && (
-                            <>
-                                <button onClick={() => { previewBounty(false) }}>Close</button>
-                                Error loading Preview Bounty!!
-                            </>
+            <motion.div
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "100%" }}
+                exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.3 }}>
 
-                        )}
-                        {isPreviewBountyPropsValid() && (
-                            <>
-                                <button onClick={() => { previewBounty(false) }}
-                                    style={{ borderStyle: "none" }}>
-                                    <FaIcons.FaTimes size={30} />
-                                </button>
-                                <br />
-                                <h1 style={{ marginTop: "10px" }}>{title}</h1>
-                                <h6>Deadline : {deadline.toString()}</h6>
-                                <br />
-                                <div className="labelContainer">
-                                    <PreviewLabel>
-                                        <h5>Details</h5>
-                                    </PreviewLabel>
-                                    <h6 className="text">{description}</h6>
-                                </div>
+                <StyledPreviewBountyContainer>
+                    <Container>
+                        <StyledPreviewBountyContent>
+                            {!isPreviewBountyPropsValid() && (
+                                <>
+                                    <button onClick={() => { previewBounty(false) }}>Close</button>
+                                    Error loading Preview Bounty!!
+                                </>
 
-                                <div className="labelContainer">
-                                    <PreviewLabel>
-                                        <h5>Rewards </h5>
-                                    </PreviewLabel>
-                                    <h5 className="text">₹ {reward}</h5>
-                                </div>
+                            )}
+                            {isPreviewBountyPropsValid() && (
+                                <>
+                                    <button onClick={() => { previewBounty(false) }}
+                                        style={{ borderStyle: "none" }}>
+                                        <FaIcons.FaTimes size={30} />
+                                    </button>
+                                    <br />
+                                    <h1 style={{ marginTop: "10px" }}>{title}</h1>
+                                    <h6>Deadline : {deadline.toString()}</h6>
+                                    <br />
+                                    <div className="labelContainer">
+                                        <PreviewLabel>
+                                            <h5>Details</h5>
+                                        </PreviewLabel>
+                                        <h6 className="text">{description}</h6>
+                                    </div>
 
-                                <div className="labelContainer">
-                                    <PreviewLabel>
-                                        <h5>Evaluation Criteria </h5>
-                                    </PreviewLabel>
-                                    <h6 className="text">{evaluation}</h6>
-                                </div>
+                                    <div className="labelContainer">
+                                        <PreviewLabel>
+                                            <h5>Rewards </h5>
+                                        </PreviewLabel>
+                                        <h5 className="text">₹ {reward}</h5>
+                                    </div>
 
-                                <div className="labelContainer">
-                                    <PreviewLabel>
-                                        <h5>Resources </h5>
-                                    </PreviewLabel>
-                                    <h6 className="text">{resources}</h6>
-                                </div>
+                                    <div className="labelContainer">
+                                        <PreviewLabel>
+                                            <h5>Evaluation Criteria </h5>
+                                        </PreviewLabel>
+                                        <h6 className="text">{evaluation}</h6>
+                                    </div>
 
-                                <div className="labelContainer">
-                                    <PreviewLabel>
-                                        <h5>Category </h5>
-                                    </PreviewLabel>
-                                    <h6 className="text">{category}</h6>
-                                </div>
+                                    <div className="labelContainer">
+                                        <PreviewLabel>
+                                            <h5>Resources </h5>
+                                        </PreviewLabel>
+                                        <h6 className="text">{resources}</h6>
+                                    </div>
 
-                                <div className="labelContainer">
-                                    <PreviewLabel>
-                                        <h5>Status</h5>
-                                    </PreviewLabel>
-                                    <h6 className="text">{status}</h6>
-                                </div>
-                                <br />
-                                <PreviewExtension />
-                            </>
-                        )}
-                    </StyledPreviewBountyContent>
-                </Container>
-            </StyledPreviewBountyContainer>
+                                    <div className="labelContainer">
+                                        <PreviewLabel>
+                                            <h5>Category </h5>
+                                        </PreviewLabel>
+                                        <h6 className="text">{category}</h6>
+                                    </div>
+
+                                    <div className="labelContainer">
+                                        <PreviewLabel>
+                                            <h5>Status</h5>
+                                        </PreviewLabel>
+                                        <h6 className="text">{status}</h6>
+                                    </div>
+                                    <br />
+                                    <PreviewExtension />
+                                </>
+                            )}
+                        </StyledPreviewBountyContent>
+                    </Container>
+                </StyledPreviewBountyContainer>
+
+            </motion.div>
+
 
         </>
     )

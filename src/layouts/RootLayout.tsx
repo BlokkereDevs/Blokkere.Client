@@ -20,14 +20,16 @@ function RootLayout()
         <>
             <Router>
                 <>
-                    <Routes>
-                        <Route path='/home' index element={<Home />} />
-                        <Route path='/createbounties' element={<CreateBounties />} />
-                        <Route path='/bounties' element={<Bounties />} />
-                        <Route path='/statistics' element={<Statistics />} />
-                        <Route path='/yourprofile' element={<YourProfile />} />
-                        <Route path='/submittedbounties' element={<SubmittedBounties />} />
-                    </Routes>
+                    <AnimatePresence>
+                        <Routes>
+                            <Route path='/home' index element={<Home />} />
+                            <Route path='/createbounties' element={<CreateBounties />} />
+                            <Route path='/bounties' element={<Bounties />} />
+                            <Route path='/statistics' element={<Statistics />} />
+                            <Route path='/yourprofile' element={<YourProfile />} />
+                            <Route path='/submittedbounties' element={<SubmittedBounties />} />
+                        </Routes>
+                    </AnimatePresence>
                 </>
                 <Routes>
                     <Route path='/dummypayment' element={<DummyPayment />} />

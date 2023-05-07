@@ -9,6 +9,7 @@ import BlokerreButton from '../components/BlokerreButton';
 import Sidebar from '../components/Sidebar';
 import * as FaIcons from 'react-icons/fa'
 import "./bounties.css";
+import { motion } from 'framer-motion';
 
 function Bounties()
 {
@@ -43,46 +44,55 @@ function Bounties()
             <Sidebar navbarHeader='Bounties' >
                 <FaIcons.FaBriefcase size={25} />
             </Sidebar>
-            <Container>
-                <Row md={4}>
-                    {
-                        bounties.map(bounty => (
-                            <Col className="col2">
-                                <BountyCard title={bounty.title}
-                                    description={bounty.description}
-                                    reward={bounty.reward}
-                                    evaluation={bounty.evaluation}
-                                    resources={bounty.resources}
-                                    deadline={bounty.deadline}
-                                    authorId={bounty.authorId}
-                                    category={bounty.category}
-                                    status={bounty.status}
-                                    assignedUsers={bounty.assignedUsers}
-                                    onClick={() =>
-                                    {
-                                        setCurrentBounty(bounty)
-                                        previewBounty(true);
-                                    }}
-                                />
-                            </Col>
-                        ))
-                    }
-                </Row>
-            </Container>
-            {openPreview &&
-                <PreviewBounty title={currentBounty!.title}
-                    description={currentBounty!.description}
-                    reward={currentBounty!.reward}
-                    resources={currentBounty!.resources}
-                    evaluation={currentBounty!.evaluation}
-                    deadline={currentBounty!.deadline}
-                    category={currentBounty!.category}
-                    status={currentBounty!.status}
-                    previewBounty={previewBounty}
-                >
-                    <BlokerreButton color='info' onClick={() => { }}>Add to List</BlokerreButton>
-                </PreviewBounty>
-            }
+            <motion.div
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "100%" }}
+                exit={{ opacity: 0, x: window.innerWidth, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.6 }}>
+
+                <Container>
+                    <Row md={4}>
+                        {
+                            bounties.map(bounty => (
+                                <Col className="col2">
+                                    <BountyCard title={bounty.title}
+                                        description={bounty.description}
+                                        reward={bounty.reward}
+                                        evaluation={bounty.evaluation}
+                                        resources={bounty.resources}
+                                        deadline={bounty.deadline}
+                                        authorId={bounty.authorId}
+                                        category={bounty.category}
+                                        status={bounty.status}
+                                        assignedUsers={bounty.assignedUsers}
+                                        onClick={() =>
+                                        {
+                                            setCurrentBounty(bounty)
+                                            previewBounty(true);
+                                        }}
+                                    />
+                                </Col>
+                            ))
+                        }
+                    </Row>
+                </Container>
+                {openPreview &&
+                    <PreviewBounty title={currentBounty!.title}
+                        description={currentBounty!.description}
+                        reward={currentBounty!.reward}
+                        resources={currentBounty!.resources}
+                        evaluation={currentBounty!.evaluation}
+                        deadline={currentBounty!.deadline}
+                        category={currentBounty!.category}
+                        status={currentBounty!.status}
+                        previewBounty={previewBounty}
+                    >
+                        <BlokerreButton color='info' onClick={() => { }}>Add to List</BlokerreButton>
+                    </PreviewBounty>
+                }
+
+            </motion.div>
+
         </>
     )
 }
